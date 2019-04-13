@@ -4,7 +4,7 @@
 			<div class="uk-container-center uk-container absolute-pos">
 				<div class="uk-grid">
 					<div class="uk-width-medium-1-2 uk-width-1-2">
-						<h3 class="uk-h3">Карта офисов</h3>
+						<h3 class="uk-h3">РљР°СЂС‚Р° РѕС„РёСЃРѕРІ</h3>
 					</div>
 					
 					<ViewTypeSelect :prefix="'map_'" />
@@ -28,8 +28,8 @@
         name: "MapView",
         
         props: [
-            "objects",      // Объекты обслуживания (приходят уже отфильтрованными)
-            "cities",       // Города
+            "objects",      // РћР±СЉРµРєС‚С‹ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ (РїСЂРёС…РѕРґСЏС‚ СѓР¶Рµ РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅС‹РјРё)
+            "cities",       // Р“РѕСЂРѕРґР°
         ],
 		
 		components: {
@@ -38,26 +38,26 @@
         
         data() {
             return {
-                mapObject: null,    // Карта
+                mapObject: null,    // РљР°СЂС‚Р°
             }
         },
         
         computed: {
-            // ID выбранного города
+            // ID РІС‹Р±СЂР°РЅРЅРѕРіРѕ РіРѕСЂРѕРґР°
             cityId: {
                 get() {
                     return this.$store.state.filter.cityId;
                 }
             },
             
-            // Выбранные услуги
+            // Р’С‹Р±СЂР°РЅРЅС‹Рµ СѓСЃР»СѓРіРё
             selectedServices: {
                 get() {
                     return this.$store.state.filter.selectedServices;
                 }
             },
 
-            // Тип отображения объектов обслуживания
+            // РўРёРї РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРІ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ
             viewType: {
                 get() {
                     return this.$store.state.viewType;
@@ -66,12 +66,12 @@
         },
         
         methods: {
-            // Обновляет отрисовку объектов обслуживания, соответствующих фильтру
+            // РћР±РЅРѕРІР»СЏРµС‚ РѕС‚СЂРёСЃРѕРІРєСѓ РѕР±СЉРµРєС‚РѕРІ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ, СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёС… С„РёР»СЊС‚СЂСѓ
             renderFilteredObjects() {
-                // Очищаем карту от всех объектов
+                // РћС‡РёС‰Р°РµРј РєР°СЂС‚Сѓ РѕС‚ РІСЃРµС… РѕР±СЉРµРєС‚РѕРІ
                 this.mapObject.geoObjects.removeAll();
                 
-                // Метки объектов обслуживания
+                // РњРµС‚РєРё РѕР±СЉРµРєС‚РѕРІ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ
                 let placemarks = [];
                 
                 let PlacemarkHintLayout = ymaps.templateLayoutFactory.createClass(
@@ -104,16 +104,16 @@
                         {
                             hintLayout: PlacemarkHintLayout,
                             
-                            // Опции.
+                            // РћРїС†РёРё.
                             iconLayout: 'default#imageWithContent',
-                            iconImageHref: 'http://kubankredit.ru/upload/images/pin.png',	// Путь к изображению метки
-                            iconImageSize: [31, 46],            // Размер
-                            iconImageOffset: [-15, -46],        // Смещение
+                            iconImageHref: 'http://kubankredit.ru/upload/images/pin.png',	// РџСѓС‚СЊ Рє РёР·РѕР±СЂР°Р¶РµРЅРёСЋ РјРµС‚РєРё
+                            iconImageSize: [31, 46],            // Р Р°Р·РјРµСЂ
+                            iconImageOffset: [-15, -46],        // РЎРјРµС‰РµРЅРёРµ
                         }
                     ));
                 }
                 
-                // Шаблон хинта метки кластера
+                // РЁР°Р±Р»РѕРЅ С…РёРЅС‚Р° РјРµС‚РєРё РєР»Р°СЃС‚РµСЂР°
                 let ClustererHintLayout = ymaps.templateLayoutFactory.createClass(
 					'<div class="balloon-wrap"' + 
 						'<div class="balloon-inner-wrap">' +
@@ -139,55 +139,55 @@
 					'</div>'					
                 );               
                
-                // Кластеризатор
+                // РљР»Р°СЃС‚РµСЂРёР·Р°С‚РѕСЂ
                 let clusterer = new ymaps.Clusterer({
-                    // Задаем собственный шаблон кластера
+                    // Р—Р°РґР°РµРј СЃРѕР±СЃС‚РІРµРЅРЅС‹Р№ С€Р°Р±Р»РѕРЅ РєР»Р°СЃС‚РµСЂР°
                     clusterIconLayout: ymaps.templateLayoutFactory.createClass(
                         '<div class="cluster_icon"><p>{{ properties.geoObjects.length }}</p></div>'
                     ),
                     
                     hintLayout: ClustererHintLayout,
 
-                    // Геометрия кластера
+                    // Р“РµРѕРјРµС‚СЂРёСЏ РєР»Р°СЃС‚РµСЂР°
                     clusterIconShape: {
-                        // Прямоугольник
+                        // РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє
                         //type: 'Rectangle',
                         //coordinates: [[0, 0], [50, 50]]
                         
-                        // Круг
+                        // РљСЂСѓРі
                         type: 'Circle',
                         coordinates: [25, 25],
                         radius: 25,
                     }
                 });
                 
-                // Добавляем массив меток в кластеризатор
+                // Р”РѕР±Р°РІР»СЏРµРј РјР°СЃСЃРёРІ РјРµС‚РѕРє РІ РєР»Р°СЃС‚РµСЂРёР·Р°С‚РѕСЂ
                 clusterer.add(placemarks);
 
-                // Добавляем кластеризатор на карту
+                // Р”РѕР±Р°РІР»СЏРµРј РєР»Р°СЃС‚РµСЂРёР·Р°С‚РѕСЂ РЅР° РєР°СЂС‚Сѓ
                 this.mapObject.geoObjects.add(clusterer);
             },
         },
         
         watch: {
-            // Слежение за обновлением выбранного города с целью выполнения необходимых действий над картой
+            // РЎР»РµР¶РµРЅРёРµ Р·Р° РѕР±РЅРѕРІР»РµРЅРёРµРј РІС‹Р±СЂР°РЅРЅРѕРіРѕ РіРѕСЂРѕРґР° СЃ С†РµР»СЊСЋ РІС‹РїРѕР»РЅРµРЅРёСЏ РЅРµРѕР±С…РѕРґРёРјС‹С… РґРµР№СЃС‚РІРёР№ РЅР°Рґ РєР°СЂС‚РѕР№
             cityId: function(value) {
                 let city = this.cities.find(x => x.id == value);
                 
-                // Если город найден и заданы его координаты
+                // Р•СЃР»Рё РіРѕСЂРѕРґ РЅР°Р№РґРµРЅ Рё Р·Р°РґР°РЅС‹ РµРіРѕ РєРѕРѕСЂРґРёРЅР°С‚С‹
                 if (city) {
                     if (city.coord) {
                         if (city.coord[0] && city.coord[1]) {
-                            // Перемещаем центр карты на координаты города
+                            // РџРµСЂРµРјРµС‰Р°РµРј С†РµРЅС‚СЂ РєР°СЂС‚С‹ РЅР° РєРѕРѕСЂРґРёРЅР°С‚С‹ РіРѕСЂРѕРґР°
                             this.mapObject.setCenter([city.coord[0], city.coord[1]], 13, { duration: 100, flying: true });
                         }
                     }
                 }
             },
             
-            // Слежение за обновлением списка выбранных услуг с целью выполнения необходимых действий над картой
+            // РЎР»РµР¶РµРЅРёРµ Р·Р° РѕР±РЅРѕРІР»РµРЅРёРµРј СЃРїРёСЃРєР° РІС‹Р±СЂР°РЅРЅС‹С… СѓСЃР»СѓРі СЃ С†РµР»СЊСЋ РІС‹РїРѕР»РЅРµРЅРёСЏ РЅРµРѕР±С…РѕРґРёРјС‹С… РґРµР№СЃС‚РІРёР№ РЅР°Рґ РєР°СЂС‚РѕР№
             selectedServices: function(value) {
-                // Отрисовка объектов, соответствующих фильтру
+                // РћС‚СЂРёСЃРѕРІРєР° РѕР±СЉРµРєС‚РѕРІ, СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёС… С„РёР»СЊС‚СЂСѓ
                 this.renderFilteredObjects();
             },            
         },
@@ -195,7 +195,7 @@
         created() {
             let _this = this;
 
-            // Инициализация карты
+            // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєР°СЂС‚С‹
             ymaps.ready(function() {
 	        _this.mapObject = new ymaps.Map("ymap", {
 	            center: [45.0448400, 38.9760300],

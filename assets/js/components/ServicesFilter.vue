@@ -23,7 +23,7 @@
             <div class="uk-width-medium-1-3 uk-width-small-1-1">
                 <div class="form_margin uk-display-inline-block">
                     <form class="uk-form uk-form-stacked">
-                        <label class="uk-form-label column-name">Услуги для частных лиц</label>
+                        <label class="uk-form-label column-name">РЈСЃР»СѓРіРё РґР»СЏ С‡Р°СЃС‚РЅС‹С… Р»РёС†</label>
                         <div class="input_box uk-display-inline-block">
                             <div class="uk-form-controls checkbox-group">
 								<div v-for="service in flServices" >
@@ -39,7 +39,7 @@
             <div class="uk-width-medium-1-3 uk-width-small-1-1">
                 <div class="form_margin uk-display-inline-block">
                     <form class="uk-form uk-form-stacked">
-                        <label class="uk-form-label column-name">Услуги для юридических лиц</label>
+                        <label class="uk-form-label column-name">РЈСЃР»СѓРіРё РґР»СЏ СЋСЂРёРґРёС‡РµСЃРєРёС… Р»РёС†</label>
                         <div class="input_box uk-display-inline-block">
                             <div class="uk-form-controls checkbox-group">
 								<div v-for="service in urServices" >
@@ -58,14 +58,14 @@
 </template>
 
 <script>
-    import * as MUTATION from './../misc/mutation-types.js'        // Типы мутаций
+    import * as MUTATION from './../misc/mutation-types.js'        // РўРёРїС‹ РјСѓС‚Р°С†РёР№
 	import CityFilter from "./CityFilter.vue";
     
     export default {
         name: "ServiceFilter",
         
         props: [
-            "servicesList",            // Перечень предоставляемых услуг
+            "servicesList",            // РџРµСЂРµС‡РµРЅСЊ РїСЂРµРґРѕСЃС‚Р°РІР»СЏРµРјС‹С… СѓСЃР»СѓРі
 			"citiesList"
         ],
         
@@ -76,11 +76,11 @@
         },
 		
         components: {
-            CityFilter,     // Фильтр по городу
+            CityFilter,     // Р¤РёР»СЊС‚СЂ РїРѕ РіРѕСЂРѕРґСѓ
         },		
             
         computed: {
-            // Выбранные услуги
+            // Р’С‹Р±СЂР°РЅРЅС‹Рµ СѓСЃР»СѓРіРё
             services: {
                 get() {
                     return this.$store.state.filter.selectedServices
@@ -91,21 +91,21 @@
                 }
             },
             
-            // Услуги для юрлиц
+            // РЈСЃР»СѓРіРё РґР»СЏ СЋСЂР»РёС†
             urServices: function() {
                 return this.servicesList.filter(x => {
                    return x.category == 'ur';
                 });
             },
             
-            // Услуги для физлиц
+            // РЈСЃР»СѓРіРё РґР»СЏ С„РёР·Р»РёС†
             flServices: function() {
                 return this.servicesList.filter(x => {
                    return x.category == 'fl';
                 });
             },
             
-            // Услуги для обоих категорий
+            // РЈСЃР»СѓРіРё РґР»СЏ РѕР±РѕРёС… РєР°С‚РµРіРѕСЂРёР№
             allServices: function() {
                 return this.servicesList.filter(x => {
                     return x.category == 'all';

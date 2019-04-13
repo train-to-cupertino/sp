@@ -1,6 +1,6 @@
 <template>
 	<div class="select_box uk-display-inline-block">
-		<label class="uk-form-label" for="city_choose">Населенный пункт</label>
+		<label class="uk-form-label" for="city_choose">РќР°СЃРµР»РµРЅРЅС‹Р№ РїСѓРЅРєС‚</label>
 		<div class="uk-form-controls">
 			<select id="citySelect" v-model="city" @change="cityChanged" class="select_default city_choose">
 				<option v-for="city in citiesList" :value="city.id">{{city.name}}</option>
@@ -10,18 +10,18 @@
 </template>
 
 <script>
-    import * as MUTATION from './../misc/mutation-types.js'        // Типы мутаций
+    import * as MUTATION from './../misc/mutation-types.js'        // РўРёРїС‹ РјСѓС‚Р°С†РёР№
     
-    // Компонент "Фильтр отображаемых объектов обслуживания по городу"
+    // РљРѕРјРїРѕРЅРµРЅС‚ "Р¤РёР»СЊС‚СЂ РѕС‚РѕР±СЂР°Р¶Р°РµРјС‹С… РѕР±СЉРµРєС‚РѕРІ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ РїРѕ РіРѕСЂРѕРґСѓ"
     export default {
         name: "CityFilter",
         
         props: [
-            "citiesList",   // Перечень городов
+            "citiesList",   // РџРµСЂРµС‡РµРЅСЊ РіРѕСЂРѕРґРѕРІ
         ],
         
         computed: {
-            // Выбранный город
+            // Р’С‹Р±СЂР°РЅРЅС‹Р№ РіРѕСЂРѕРґ
             city: {
                 get() {
                     return this.$store.state.filter.cityId;
@@ -43,6 +43,7 @@
 			}
         },
 		
+		/*
 		mounted() {
 			let _this = this;
 			$('.city_choose').change(function() {
@@ -58,7 +59,8 @@
 
 		created() {
 			$('.city_choose').niceSelect(); // !!!
-		},		
+		},
+		*/		
     }
 </script>
 

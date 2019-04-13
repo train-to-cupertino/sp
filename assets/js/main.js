@@ -8,6 +8,7 @@ import getStore from './store.js'
 Vue.config.productionTip = false
 Vue.use(VueResource);
 Vue.use(Vuex)
+Vue.config.devtools = true
 
 const store = getStore();
 

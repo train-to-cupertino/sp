@@ -1,3 +1,3 @@
-export const SELECT_CITY = 'MUTATION_SELECT_CITY';              // Выбор города
-export const SELECT_SERVICES = 'MUTATION_UPDATE_SERVICES';      // Выбор услуг
-export const SELECT_VIEW_TYPE = 'MUTATION_UPDATE_VIEW_TYPE';    // Выбор типа отображения объектов обслуживания, соответствующих фильтру
+export const SELECT_CITY = 'MUTATION_SELECT_CITY';              // Р’С‹Р±РѕСЂ РіРѕСЂРѕРґР°
+export const SELECT_SERVICES = 'MUTATION_UPDATE_SERVICES';      // Р’С‹Р±РѕСЂ СѓСЃР»СѓРі
+export const SELECT_VIEW_TYPE = 'MUTATION_UPDATE_VIEW_TYPE';    // Р’С‹Р±РѕСЂ С‚РёРїР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРІ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ, СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёС… С„РёР»СЊС‚СЂСѓ

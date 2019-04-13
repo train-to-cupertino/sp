@@ -4,7 +4,7 @@
 			<div class="uk-container-center uk-container">
 				<div class="uk-grid">
 					<div class="uk-width-medium-1-2 uk-width-1-2">
-						<h3 class="uk-h3">Карта офисов</h3>
+						<h3 class="uk-h3">РљР°СЂС‚Р° РѕС„РёСЃРѕРІ</h3>
 					</div>
 					
 					<ViewTypeSelect :prefix="'list_'" />
@@ -14,8 +14,8 @@
 							<div class="uk-overflow-container">
 								<table class="uk-table uk-table-hover">
 									<tr class="not-hover table-header">
-										<th>Офис</th>
-										<th>Адрес</th>
+										<th>РћС„РёСЃ</th>
+										<th>РђРґСЂРµСЃ</th>
 									</tr>
 									<tr v-for="object in pageItems" :key="object.ID" >
 										<td class=""><span><a v-bind:href="object.DETAILURL" >{{object.NAME}}</a></span></td>
@@ -48,8 +48,8 @@
         name: "ListView",
         
         props: [
-            "objects",      // Объекты обслуживания (приходят уже отфильтрованными)
-            "cities",       // Города
+            "objects",      // РћР±СЉРµРєС‚С‹ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ (РїСЂРёС…РѕРґСЏС‚ СѓР¶Рµ РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅС‹РјРё)
+            "cities",       // Р“РѕСЂРѕРґР°
         ],
 		
 		components: {
@@ -64,21 +64,21 @@
         },        
         
         computed: {
-            // Тип отображения объектов обслуживания
+            // РўРёРї РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РѕР±СЉРµРєС‚РѕРІ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ
             viewType: {
                 get() {
                     return this.$store.state.viewType;
                 }
             },
             
-            // Максимальное количество страниц
+            // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂР°РЅРёС†
             maxPages: function() {
                 if(this.objects) {
                     return Math.ceil(this.objects.length / this.pageSize);
                 }
             },
             
-            // Объекты обслуживания, расположенные на странице с номером pageNum
+            // РћР±СЉРµРєС‚С‹ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ, СЂР°СЃРїРѕР»РѕР¶РµРЅРЅС‹Рµ РЅР° СЃС‚СЂР°РЅРёС†Рµ СЃ РЅРѕРјРµСЂРѕРј pageNum
             pageItems: function() {
                 if(!this.objects) 
                     return [];
