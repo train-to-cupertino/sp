@@ -1,6 +1,6 @@
 <template>
-	<div id="app">
-		<v-app id="inspire">
+	<div>
+		<v-app>
 			<v-container text-xs-center>
 				<v-layout row wrap>
 					<v-flex xs4>
@@ -16,10 +16,10 @@
 </template>
 
 <script>
-    import ObjectsFilter from "./components/ObjectsFilter.vue";
-    import ObjectsView from "./components/ObjectsView.vue";
-    import Data from "./data/service_points.js";
-    
+	import ObjectsFilter from "./components/ObjectsFilter.vue";
+	import ObjectsView from "./components/ObjectsView.vue";
+	import Data from "./data/service_points.js";
+
     // Головной компонент приложения "Офисы и банкоматы"
     export default {
         name: "App",
@@ -138,7 +138,7 @@
             },
         },
         
-	created() {
+		created() {
             //let urlOffices = 'https://www.kubankredit.ru/service/?json=Y';
 
             let _this = this;
@@ -158,15 +158,5 @@
 </script>
     
 <style scoped>
-.content .main-page-banner {
-	background-color: #fff;
-}   
 
-.content .main-page-banner .banner-main {
-	min-height: auto;
-} 
-
-.content .main-page-banner .main-banner-article .uk-article .uk-article-title {
-	color: #000;
-}
 </style>

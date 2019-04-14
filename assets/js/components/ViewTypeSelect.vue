@@ -1,24 +1,43 @@
 <template>
-<div style="position: absolute; left: 40px; top: 40px; background: rgba(255,255,255,0.5); z-index: 1; border: 1px solid black;">
-	<!--
-	<span v-for="vType in Object.keys(allowedViewTypes)">
-		<input type="radio" :value="vType" v-model="viewType" :id="prefix + 'view_type_' + vType" />
-		<label :for="prefix + 'view_type_' + vType" :class="vType + '-label'"><span>{{allowedViewTypes[vType]}}</span></label>
-	</span>
-	-->
-	<v-icon>
-		list
-	</v-icon>
-	
-	<v-switch
-		v-model="viewType"
-		:label=""
-	></v-switch>
-	
-	<v-icon>
-		map
-	</v-icon>	
-</div>
+	<div style="
+	    position: absolute;
+		left: 10px;
+		top: 10px;
+		background: rgba(255, 255, 255, 0.5);
+		z-index: 1;
+		width: 160px;
+		height: 68px;
+		border-radius: 34px;
+	">
+		<!--
+		<span v-for="vType in Object.keys(allowedViewTypes)">
+			<input type="radio" :value="vType" v-model="viewType" :id="prefix + 'view_type_' + vType" />
+			<label :for="prefix + 'view_type_' + vType" :class="vType + '-label'"><span>{{allowedViewTypes[vType]}}</span></label>
+		</span>
+		-->
+		
+		<v-icon
+			:style="{ cursor: 'pointer' }"
+			color="blue darken-4"
+			@click="viewType = false"
+		>
+			list
+		</v-icon>
+		
+		<v-switch
+			v-model="viewType"
+			:style="{ display: 'inline-flex!important' }"
+			color="blue darken-4"
+		></v-switch>
+		
+		<v-icon
+			:style="{ cursor: 'pointer' }"
+			color="blue darken-4"
+			@click="viewType = true"
+		>
+			map
+		</v-icon>
+	</div>
 </template>
 
 <script>

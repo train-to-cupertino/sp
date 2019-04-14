@@ -1,7 +1,7 @@
 {
   "name": "testsrc",
   "scripts": {
-    "build": "webpack -p",
+	"build": "webpack -p",
     "watch": "webpack --watch",
     "dev": "webpack-dev-server --hot --open"
   },
