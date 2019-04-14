@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <ServicesFilter :servicesList="lists.services" :citiesList="lists.cities" />
-    </div>
+	<ServicesFilter :servicesList="lists.services" :citiesList="lists.cities" />
 </template>
 
 <script>

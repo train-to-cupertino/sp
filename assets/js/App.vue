@@ -1,28 +1,18 @@
 <template>
-	<div class="content content-typical content-offices">
-		<div class="main-page-banner">
-			<div class="banner-main">
-				<div class="uk-container uk-container-center uk-position-relative">
-					<div class="uk-grid">
-						<div class="uk-width-10-10 uk-width-medium-10-10 uk-width-large-10-10">
-							<div class="main-banner-article">
-								<div class="uk-article" style="margin-top: 0px;">
-									<h1 class="uk-article-title">
-										Офисы и банкоматы
-									</h1>
-								</div>
-							</div>
-						</div>
-						<div class="uk-width-medium-10-10 uk-hidden-small uk-width-large-10-10"></div>
-					</div>
-				</div>
-			</div>
-		</div>	
-	
-        <ObjectsFilter :lists="lists" />
-		
-        <ObjectsView :viewType="viewType" :lists="lists"/>
-    </div>
+	<div id="app">
+		<v-app id="inspire">
+			<v-container text-xs-center>
+				<v-layout row wrap>
+					<v-flex xs4>
+						<ObjectsFilter :lists="lists" />
+					</v-flex>
+					<v-flex xs8>
+						<ObjectsView :viewType="viewType" :lists="lists"/>
+					</v-flex>				
+				</v-layout>
+			</v-container>
+		</v-app>
+	</div>
 </template>
 
 <script>

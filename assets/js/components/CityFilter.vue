@@ -2,7 +2,7 @@
 	<div class="select_box uk-display-inline-block">
 		<label class="uk-form-label" for="city_choose">Населенный пункт</label>
 		<div class="uk-form-controls">
-			<select id="citySelect" v-model="city" @change="cityChanged" class="select_default city_choose">
+			<select id="citySelect" v-model="city" class="select_default city_choose">
 				<option v-for="city in citiesList" :value="city.id">{{city.name}}</option>
 			</select>
 		</div>

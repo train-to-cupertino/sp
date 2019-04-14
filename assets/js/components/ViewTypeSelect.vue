@@ -1,11 +1,23 @@
 <template>
-<div class="uk-width-medium-1-2 uk-width-1-2">
-	<div class="map-toolbar">
-		<span v-for="vType in Object.keys(allowedViewTypes)">
-			<input type="radio" :name="prefix + 'map-table'" :value="vType" v-model="viewType" :id="prefix + 'view_type_' + vType" />
-			<label :for="prefix + 'view_type_' + vType" :class="vType + '-label'"><span>{{allowedViewTypes[vType]}}</span></label>
-		</span>
-	</div>
+<div style="position: absolute; left: 40px; top: 40px; background: rgba(255,255,255,0.5); z-index: 1; border: 1px solid black;">
+	<!--
+	<span v-for="vType in Object.keys(allowedViewTypes)">
+		<input type="radio" :value="vType" v-model="viewType" :id="prefix + 'view_type_' + vType" />
+		<label :for="prefix + 'view_type_' + vType" :class="vType + '-label'"><span>{{allowedViewTypes[vType]}}</span></label>
+	</span>
+	-->
+	<v-icon>
+		list
+	</v-icon>
+	
+	<v-switch
+		v-model="viewType"
+		:label=""
+	></v-switch>
+	
+	<v-icon>
+		map
+	</v-icon>	
 </div>
 </template>
 
@@ -22,13 +34,26 @@
         
         computed: {
             // Тип отображения объектов, соответствующих фильтру
+			/*
             viewType: {
                 get() {
+					
                     return this.$store.state.viewType;
                 },
                 
                 set(value) {
                     this.$store.commit([MUTATION.SELECT_VIEW_TYPE], value);
+                }
+            },
+			*/
+			
+            viewType: {
+                get() {
+                    return (this.$store.state.viewType == 'map');
+                },
+                
+                set(value) {
+                    this.$store.commit([MUTATION.SELECT_VIEW_TYPE], value ? 'map' : 'table');
                 }
             },
 			

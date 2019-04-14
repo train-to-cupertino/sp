@@ -1,40 +1,29 @@
 <template>
-	<div class="map-block" style="height: auto;">
-		<div class="content-box">
-			<div class="uk-container-center uk-container">
-				<div class="uk-grid">
-					<div class="uk-width-medium-1-2 uk-width-1-2">
-						<h3 class="uk-h3">Карта офисов</h3>
-					</div>
-					
-					<ViewTypeSelect :prefix="'list_'" />
-					
-					<div class="uk-width-medium-1-1">
-						<div class="table-map" style="display: block;" >
-							<div class="uk-overflow-container">
-								<table class="uk-table uk-table-hover">
-									<tr class="not-hover table-header">
-										<th>Офис</th>
-										<th>Адрес</th>
-									</tr>
-									<tr v-for="object in pageItems" :key="object.ID" >
-										<td class=""><span><a v-bind:href="object.DETAILURL" >{{object.NAME}}</a></span></td>
-										<td class=""><span>{{object.ADDR}}</span></td>
-									</tr>
-								</table>
-							</div>
-							<div v-if="maxPages && maxPages > 1"  class="input_box uk-display-inline-block">
-								<ul class="uk-pagination pagination-short">
-									<li class=""><a @click="pageNum > 1 ? pageNum-- : pageNum" :class="[(pageNum < 2)?'icon-prev-disabled':'']" ><i class="icon icon-prev"></i></a></li>
-									<li class="uk-active"><span>{{pageNum}}</span></li>
-									<li class="divider"><span>/</span></li>
-									<li><a @click="pageNum=1; pageSize=100500" >{{maxPages}}</a></li>
-									<!--<li><a>{{maxPages}}</a></li>-->
-									<li><a @click="pageNum < maxPages ? pageNum++ : pageNum" :class="[(pageNum == maxPages)?'icon-next-disabled':'']" ><i class="icon icon-next"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
+	<div style="height: auto;">
+		<div style="position: relative;">
+			<ViewTypeSelect :prefix="'list_'" />
+			<div class="table-map" style="display: block;" >
+				<div>
+					<table class="uk-table uk-table-hover">
+						<tr class="not-hover table-header">
+							<th>Офис</th>
+							<th>Адрес</th>
+						</tr>
+						<tr v-for="object in pageItems" :key="object.ID" >
+							<td class=""><span><a :href="object.DETAILURL" >{{object.NAME}}</a></span></td>
+							<td class=""><span>{{object.ADDR}}</span></td>
+						</tr>
+					</table>
+				</div>
+				<div v-if="maxPages && maxPages > 1">
+					<ul class="uk-pagination pagination-short">
+						<li class=""><a @click="pageNum > 1 ? pageNum-- : pageNum" :class="[(pageNum < 2)?'icon-prev-disabled':'']" ><i class="icon icon-prev"></i></a></li>
+						<li class="uk-active"><span>{{pageNum}}</span></li>
+						<li class="divider"><span>/</span></li>
+						<!--<li><a @click="pageNum=1; pageSize=100500" >{{maxPages}}</a></li>-->
+						<li><a>{{maxPages}}</a></li>
+						<li><a @click="pageNum < maxPages ? pageNum++ : pageNum" :class="[(pageNum == maxPages)?'icon-next-disabled':'']" ><i class="icon icon-next"></i></a></li>
+					</ul>
 				</div>
 			</div>
 		</div>

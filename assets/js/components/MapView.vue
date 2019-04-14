@@ -1,23 +1,7 @@
 <template>
-	<div class="map-block">
-		<div class="content-box">
-			<div class="uk-container-center uk-container absolute-pos">
-				<div class="uk-grid">
-					<div class="uk-width-medium-1-2 uk-width-1-2">
-						<h3 class="uk-h3">Карта офисов</h3>
-					</div>
-					
-					<ViewTypeSelect :prefix="'map_'" />
-					
-					<div class="uk-width-medium-1-1">
-
-					</div>
-				</div>
-			</div>
-			
-			<div id="ymap"></div>
-			
-		</div>
+	<div style="position: relative;">
+		<ViewTypeSelect :prefix="'map_'" />
+		<div id="ymap"></div>
 	</div>
 </template>
 
@@ -211,7 +195,7 @@
 
 <style>
     #ymap {
-        height: 700px;
+        height: 600px;
         width: 100%;
     }
     
