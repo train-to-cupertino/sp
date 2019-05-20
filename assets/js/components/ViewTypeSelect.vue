@@ -3,7 +3,7 @@
 	    position: absolute;
 		left: 10px;
 		top: 10px;
-		background: rgba(255, 255, 255, 0.5);
+		background: rgba(255, 255, 255, 0.7);
 		z-index: 1;
 		width: 160px;
 		height: 68px;
@@ -16,27 +16,40 @@
 		</span>
 		-->
 		
-		<v-icon
-			:style="{ cursor: 'pointer' }"
-			color="blue darken-4"
-			@click="viewType = false"
-		>
-			list
-		</v-icon>
+		<v-tooltip bottom>
+			<template v-slot:activator="{ on }">
+				<v-icon
+					:style="{ cursor: 'pointer' }"
+					color="red darken-4"
+					@click="viewType = false"
+					v-on="on"
+				>
+					list
+				</v-icon>
+			</template>
+			<span>Список</span>
+		</v-tooltip>		
+
 		
 		<v-switch
 			v-model="viewType"
 			:style="{ display: 'inline-flex!important' }"
-			color="blue darken-4"
+			color="red darken-4"
 		></v-switch>
 		
-		<v-icon
-			:style="{ cursor: 'pointer' }"
-			color="blue darken-4"
-			@click="viewType = true"
-		>
-			map
-		</v-icon>
+		<v-tooltip bottom>
+			<template v-slot:activator="{ on }">
+				<v-icon
+					:style="{ cursor: 'pointer' }"
+					color="red darken-4"
+					@click="viewType = true"
+					v-on="on"
+				>
+					map
+				</v-icon>
+			</template>
+			<span>Карта</span>
+		</v-tooltip>		
 	</div>
 </template>
 

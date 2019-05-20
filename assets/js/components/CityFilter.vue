@@ -1,11 +1,20 @@
 <template>
-	<div class="select_box uk-display-inline-block">
-		<label class="uk-form-label" for="city_choose">Населенный пункт</label>
-		<div class="uk-form-controls">
+	<div>
+		<!--<label>Населенный пункт</label>-->
+			<!--
 			<select id="citySelect" v-model="city" class="select_default city_choose">
 				<option v-for="city in citiesList" :value="city.id">{{city.name}}</option>
 			</select>
-		</div>
+			-->
+			<v-select
+				:items="citiesList"
+				label="Solo field"
+				solo
+				item-text="name" 
+				item-value="id"
+				v-model="city"
+				class="ma-0	pa-0"
+			></v-select>
 	</div>
 </template>
 
@@ -19,6 +28,15 @@
         props: [
             "citiesList",   // Перечень городов
         ],
+		
+		data() {
+			return {
+				defaultCity: {
+				  name: "г. Краснодар",
+				  id: "991"
+				},				
+			}
+		},
         
         computed: {
             // Выбранный город
@@ -42,25 +60,6 @@
 				this.$store.commit([MUTATION.SELECT_CITY], value);
 			}
         },
-		
-		/*
-		mounted() {
-			let _this = this;
-			$('.city_choose').change(function() {
-				_this.cityChanged($(this).val());
-			});			
-			
-			$('.city_choose').niceSelect(); // !!!
-		},
-
-		updated() {
-			$('.city_choose').niceSelect('update'); // !!!
-		},
-
-		created() {
-			$('.city_choose').niceSelect(); // !!!
-		},
-		*/		
     }
 </script>
 

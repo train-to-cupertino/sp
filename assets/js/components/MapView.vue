@@ -80,7 +80,8 @@
                             bContent: {
                                 name: obj['NAME'],
                                 //address: obj['ADDR'] + ' ' + (obj['TIMETABLE'].reduce(function (accum, curVal) { return accum.concat(curVal.srvc); }, [] ).join(', ')),
-								address: obj['ADDR'],
+								////address: obj['ADDR'],
+								address: obj['ADDRESS'],
                             },
                                     
                         },
@@ -90,9 +91,11 @@
                             
                             // Опции.
                             iconLayout: 'default#imageWithContent',
-                            iconImageHref: 'http://kubankredit.ru/upload/images/pin.png',	// Путь к изображению метки
-                            iconImageSize: [31, 46],            // Размер
-                            iconImageOffset: [-15, -46],        // Смещение
+                            iconImageHref: 'http://q9853157.beget.tech/img/pin.png',	// Путь к изображению метки
+                            //iconImageSize: [31, 46],            // Размер
+                            //iconImageOffset: [-15, -46],        // Смещение
+                            iconImageSize: [48, 48],            // Размер
+                            iconImageOffset: [-24, -48],        // Смещение
                         }
                     ));
                 }
@@ -202,18 +205,28 @@
     .balloon-wrap {
 		
         width: 300px;
-        /*height: 100px;
-        background: red;*/
+        /*height: 100px;*/
+        background: rgba(255, 208, 208, 0.75);
+		padding: 10px;
+		border: 1px solid #f99;
+		border-radius: 5px 5px 5px 5px;
+		-moz-border-radius: 5px 5px 5px 5px;
+		-webkit-border-radius: 5px 5px 5px 5px;
     }
+	
+	.balloon-header {
+		font-weight: bold;
+	}
     
     .cluster_icon {
         height: 50px; 
         width: 50px; 
         position: relative; 
-        background: url(http://kubankredit.ru/upload/images/pin50.png)
+        background: url(http://q9853157.beget.tech/img/pin50.png)
     }
     
     .cluster_icon p {
+		color: white;
         margin: 0; 
         font-weight: bold; 
         position: absolute; 
@@ -222,4 +235,8 @@
         margin-right: -50%; 
         transform: translate(-50%, -50%);
     }
+	
+	.balloon-address {
+		padding: 5px 0 10px 0;
+	}
 </style>

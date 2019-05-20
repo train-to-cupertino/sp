@@ -2,29 +2,26 @@
 	<div style="height: auto;">
 		<div style="position: relative;">
 			<ViewTypeSelect :prefix="'list_'" />
-			<div class="table-map" style="display: block;" >
-				<div>
-					<table class="uk-table uk-table-hover">
-						<tr class="not-hover table-header">
-							<th>Офис</th>
-							<th>Адрес</th>
-						</tr>
-						<tr v-for="object in pageItems" :key="object.ID" >
-							<td class=""><span><a :href="object.DETAILURL" >{{object.NAME}}</a></span></td>
-							<td class=""><span>{{object.ADDR}}</span></td>
-						</tr>
-					</table>
-				</div>
-				<div v-if="maxPages && maxPages > 1">
-					<ul class="uk-pagination pagination-short">
-						<li class=""><a @click="pageNum > 1 ? pageNum-- : pageNum" :class="[(pageNum < 2)?'icon-prev-disabled':'']" ><i class="icon icon-prev"></i></a></li>
-						<li class="uk-active"><span>{{pageNum}}</span></li>
-						<li class="divider"><span>/</span></li>
-						<!--<li><a @click="pageNum=1; pageSize=100500" >{{maxPages}}</a></li>-->
-						<li><a>{{maxPages}}</a></li>
-						<li><a @click="pageNum < maxPages ? pageNum++ : pageNum" :class="[(pageNum == maxPages)?'icon-next-disabled':'']" ><i class="icon icon-next"></i></a></li>
-					</ul>
-				</div>
+			<div style="top: 90px; position: absolute;">
+				<v-data-table :items="objects" :headers="headers" class="elevation-1" :search="search" :custom-filter="customFilter" rows-per-page-text="Точек на странице">
+					<template slot="pageText" scope="{ pageStart, pageStop, itemsLength }">
+							С {{ pageStart }} по {{ pageStop }} из {{ itemsLength }} точек обслуживания
+					</template>	
+					<template v-slot:items="objects">
+						<td style="width: 250px;">
+							{{ objects.item.NAME }}
+						</td>
+						<td class="justify-center px-0" style="width: 340px;">
+							{{ objects.item.ADDRESS }}
+						</td>
+					</template>
+					<template v-slot:no-data>
+						<div class="mt-2">Список точек обслуживания пуст</div>
+					</template>
+					<template v-slot:no-results>
+						<div class="mt-2">Не найдены элементы, соответствующие фильтру</div>
+					</template>		
+				</v-data-table>
 			</div>
 		</div>
 	</div>	
@@ -47,8 +44,23 @@
         
         data() {
             return {
+				/*
                 pageNum: 1,
                 pageSize: 10,
+				*/
+				headers: [
+					{
+						text: 'Офис',
+						align: 'left',
+						value: 'NAME'
+					},
+					{
+						text: 'Адрес',
+						align: 'left',
+						value: 'ADDRESS',
+						//sortable: false,
+					},
+				],				
             }
         },        
         
@@ -59,7 +71,7 @@
                     return this.$store.state.viewType;
                 }
             },
-            
+            /*
             // Максимальное количество страниц
             maxPages: function() {
                 if(this.objects) {
@@ -79,6 +91,7 @@
 
                 return result;
             }
+			*/
         }       
     }
 </script>

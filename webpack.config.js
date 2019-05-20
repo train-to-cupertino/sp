@@ -1,5 +1,6 @@
 var path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin'); // плагин для загрузки кода Vue
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin') // Vuetify загрузчик
  
 module.exports = {
 	entry: './assets/js/main.js',
@@ -29,12 +30,27 @@ module.exports = {
 			  use: {
 				loader: "babel-loader"
 			  }
-			}                        
+			},
+			{
+				test: /\.styl$/,
+				use: [
+					{
+						loader: "style-loader" // creates style nodes from JS strings
+					},
+					{
+						loader: "css-loader" // translates CSS into CommonJS
+					},
+					{
+						loader: "stylus-loader" // compiles Stylus to CSS
+					}
+					]
+			}		
 		]
 	},
  
 	plugins: [
-		new VueLoaderPlugin()
+		new VueLoaderPlugin(),
+		new VuetifyLoaderPlugin()
 	],
 	
 	// https://webpack.js.org/configuration/devtool/
